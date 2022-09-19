@@ -9,13 +9,15 @@ public class EmpWage {
 	public final int workingdays=20;
 	int n=1;
 	int totalempwage=0;
+	public final int workinghours=100;
+	int empHrslimit=0;
 	
-	public int attendemployee=(int) (Math.floor(Math.random()*10)%3);
+	
 
 	public void EmpWageAttendance()
 	{	
-		while (n < workingdays)
-		{ n++;
+		while (n <= workingdays && empHrslimit <= workinghours) {
+			n++;
 		int attendemployee=(int) (Math.floor(Math.random()*10)%3);
 
 		switch (attendemployee) {
@@ -31,6 +33,7 @@ public class EmpWage {
 			emphrs = 0;
 			System.out.print("The Employee is Absent");
 		}
+		empHrslimit=emphrs+empHrslimit;
 		employeewage=emphrs*wage_per_hr;
 		System.out.println(employeewage);
 		totalempwage=totalempwage+employeewage;
