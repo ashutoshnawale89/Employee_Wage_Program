@@ -1,48 +1,56 @@
 package com.employeewage;
 
 
-public class EmpWage {
-	public int wage_per_hr=20;
-	public int emphrs;
-	public int employeewage;
-	public final int is_presentemployee=1;
-	public final int workingdays=20;
-	int n=1;
-	int totalempwage=0;
-	public final int workinghours=100;
-	int empHrslimit=0;
-	
-	
-	public void EmpWageAttendance()
-	{	
-		while (n <= workingdays && empHrslimit <= workinghours) {
-			n++;
-		int attendemployee=(int) (Math.floor(Math.random()*10)%3);
-
-		switch (attendemployee) {
-		case  1 :
-			emphrs = 8;
-			System.out.print("Employee is Present Full Time");
-			break;
-		case 2 :
-			emphrs = 4;
-			System.out.print("Employee is Present Part Time");
-			break;
-		default:
-			emphrs = 0;
-			System.out.print("The Employee is Absent");
-		}
-		empHrslimit=emphrs+empHrslimit;
-		employeewage=emphrs*wage_per_hr;
-		System.out.println(employeewage);
-		totalempwage=totalempwage+employeewage;
-		}
-		System.out.println("***********************************************************");
-		System.out.println("The Monthe Salary of Employee is "+totalempwage+" ");
+public class EmpWage {	
+	 final  int IS_FULL_TIME =1;
+	 final int IS_PART_TIME =2;
+            int empRatePerHour;
+	        int numberOfWorkinDays;
+	        int maxHourInMonth;
+	        String name;
+	public EmpWage(String name,int emprateperhr,int numbofworkingdays,
+			int maxhrinmonth) {  // Parameterized Constructor 
+		this.empRatePerHour=emprateperhr;
+		this.numberOfWorkinDays=numbofworkingdays;
+		this.maxHourInMonth=maxhrinmonth;
+		this.name=name;
 	}
-	public static void main(String[] args) {
-		EmpWage Attend=new EmpWage();
-		Attend.EmpWageAttendance();
+	public void multipleCompanyWages() {
+		int emphrs = 0;
+		int empwage = 0;
+		int totalempwage = 0;
+		int totalworkingdays = 0;
+		int totalemphrs = 0;
+		System.out.println("The Name of Company is  "+name);
+		while (totalemphrs < maxHourInMonth && totalworkingdays< numberOfWorkinDays ){
+			totalworkingdays++;
+			int empcheck = (int) Math.floor(Math.random() * 10) % 3;
 
+			switch ((int)empcheck ) {
+			case  IS_FULL_TIME :
+				emphrs = 8;
+				break;
+			case IS_PART_TIME :
+				emphrs = 4;
+				break;
+			default:
+				emphrs = 0;
+			}
+			empwage = emphrs * empRatePerHour ;
+			totalempwage += empwage;
+			System.out.println( "The salary of Employe is" + empwage );
+		}
+		System.out.println("The Total Salary Of  "+name+" Company Is  : "+totalempwage);
+		System.out.println("**********************************************************************************");
+		
+	}
+	
+	
+	public static void main(String[] args) {
+		EmpWage dmart= new EmpWage("Dmart",20,20,100);
+		dmart.multipleCompanyWages();
+		EmpWage relianc= new EmpWage("Reliance",25,24,200);
+		relianc.multipleCompanyWages();
 	}
 }
+
