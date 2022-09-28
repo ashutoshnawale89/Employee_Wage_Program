@@ -13,7 +13,6 @@ public class EmpWage {
 	int empHrslimit=0;
 	
 	
-
 	public void EmpWageAttendance()
 	{	
 		while (n <= workingdays && empHrslimit <= workinghours) {
